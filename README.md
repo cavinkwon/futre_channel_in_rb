@@ -29,11 +29,11 @@ future.completed? #=> true
 ```ruby
 require 'concurrent-edge'
 
-api_caller = ->url { sleep(1); puts url; url } # api caller
+api_runner = ->url { sleep(1); puts url; url } # api caller
 api_urls = %w(url_1 url_2 url_3 url_4 url_5)
 
 # back-ground processing
-jobs = api_urls.map {|url| Concurrent.future { api_caller.call(url) } }
+jobs = api_urls.map {|url| Concurrent.future { api_runner.call(url) } }
 Concurrent.zip(*jobs).value  #=> ["url_1, "url_2", "url_3", "url_4", "url_5"]
 ```
 순차적으로 실행하면 5초가 소요되지만, Future로 1초만에 처리가 완료된다.
@@ -51,6 +51,9 @@ url_2
 비동기 처리 완료 이후에 수행될 작업을 then 으로 지정할 수 있다.
 ```ruby
 require 'concurrent-edge'
+
+api_runner = ->url { sleep(1); puts url; url } # api caller
+api_urls = %w(url_1 url_2 url_3 url_4 url_5)
 
 jobs = api_urls.map do |url|
   Concurrent.future { api_runner.call(url)  }.
