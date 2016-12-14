@@ -108,7 +108,7 @@ Concurrent::Channel.go { puts "Goroutine thread: #{Thread.current}" }
 ```
 
 #### 2) Channel
-값을 넣고, 빼낼 수 있는 쓰레드에 안전한 파이프. 고루틴들간 동기/비동기 통신시 채널을 매체로 값을 전송하거나 획득한다.
+값을 넣고, 빼낼 수 있는 쓰레드에 안전한 파이프. 고루틴들간 통신시 채널을 매체로 값을 전송하거나 획득한다.
 
 - 기본 (unbuffered channel)
 ```ruby
@@ -150,7 +150,6 @@ Channel.go { sleep 0.1; sum.call(negatives, channel) }
 x, y = channel.take, channel.take
 puts [x, y, x+y].join(' ') #=> "6 -6 0" 또는 "-6 6 0"
 ```
-메인 쓰레드는 채널에 값이 동기/비동기로 들어오는 것만이 관심사다.
 두 개의 고루틴은 비동기로 동작하므로 채널에 6, -6 어떤 값이 먼저들어올 지 확정할 수 없다.
 
 - 채널 동기화
@@ -276,7 +275,7 @@ series.call(100)
 100번째 개미수열은 대략 길이가 천억 단위인 문자열이 된다.
 순차적으로 100번째 문자열을 계산한다면 너무도 오랜 시간이 걸릴 것이다.
 
-- 고루틴과 채널을 사용.
+- 고루틴과 채널을 사용한 
 ```ruby
 # 1. 개미수열을 문자열 덩이가 아닌 문자 1개씩 읽어서 처리하자
 # 2. 1~100번째 까지 동시에 수열을 만들어 내자(고루틴 99개, 채널 100개)
@@ -296,13 +295,12 @@ puts ant_series[6].map{|e|e}.join
 # 100번째 개미수열의 10000번째 문자열. 1.5초 정도 걸린다.
 ant_series[100].each_with_index {|ch,idx| (puts ch; break) if idx == 9999 }
 ```
-다양한 [예제](https://github.com/ruby-concurrency/concurrent-ruby/tree/master/examples)들이 있으니 참고하자. [Go By Example : Channels](https://gobyexample.com/channels)를 루비로 옮긴 [예제](https://github.com/ruby-concurrency/concurrent-ruby/tree/master/examples/go-by-example-channels)들도 있다.
-
+다양한 [예제](https://github.com/ruby-concurrency/concurrent-ruby/tree/master/examples)들이 있으니 참고하자. [Go By Example : Channels](https://gobyexample.com/channels)를 루비로 옮긴 [예제 코드](https://github.com/ruby-concurrency/concurrent-ruby/tree/master/examples/go-by-example-channels)들도 있다.
 ## 4. 결론
 - Future와 Goroutine, Channel을 살펴봤다.
 - 비동기 작업을 Future로 간단히 구현할 수 있었다.
-- Goroutine, Channel을 이용한 비동기 요소들간 통신을 살펴봤다.
-- 루비에도 표준 라이브러리가 아닐 뿐, 동시성을 다루는 많은 요소들이 대부분 구현되어 있다. 사용하기도 쉽다.
+- Goroutine, Channel을 이용한 통신을 살펴봤다.
+- Concurrent-ruby gem은 동시성을 다루는 여러 요소들이 구현되어 있고 사용하기도 쉽다. 
 
 #### 첨언
 - 개미수열 문제는 lazy에 관련된 문제로, 루비의 lazy를 사용해서도 풀어보길 바란다.
