@@ -81,7 +81,7 @@ jobs = api_urls.map do |url|
 end
 Concurrent.zip(*jobs).value  #=> ["1", "2", "3", NoMethodError, "5"]
 ```
-순차적인 전파로 결과가 왜곡되지 않길 원하면 Either(성공, 실패를 감싸는 객체)로 처리결과를 전파하면 된다.
+순차적인 전파로 결과가 왜곡되지 않길 원하면 Either(성공, 실패를 감싸는 객체)로 처리결과를 전파하면 된다.  
 관련해서는 다음을 참고하자. - [Refactoring with Monads](http://codon.com/refactoring-ruby-with-monads#monads), [RailWay oriented programming](http://fsharpforfunandprofit.com/posts/recipe-part2/)
 
 #### 4) 기타
