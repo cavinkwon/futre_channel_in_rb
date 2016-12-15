@@ -94,8 +94,8 @@ Concurrent.zip(*jobs).value  #=> ["1", "2", "3", NoMethodError, "5"]
 
 ## 3. [Channel과 Goroutines](http://ruby-concurrency.github.io/concurrent-ruby/Concurrent/Edge/Channel.html) 이해
 Go 언어의 [goroutine](https://golang.org/doc/effective_go.html#goroutines), [channel](https://golang.org/doc/effective_go.html#channels)과 Clojure언어의 [core.async](https://clojure.github.io/core.async/index.html)에 영감을 받아 CSP(순차 프로세스 통신)기능을 구현하였다.
-> "Do not communicate by sharing memory; instead, share memory by communicating.""
-> "메모리를 공유하여 통신하지 말고, 그 대신 통신을 통해 메모리를 공유합시다"
+> "Do not communicate by sharing memory; instead, share memory by communicating."  
+> "메모리를 공유하여 통신하기 보다 통신을 통해 메모리를 공유합시다."
 
 쓰레드에 안전한 큐(채널)를 두고 여러 쓰레드들(고루틴)이 자유롭게 데이터를 넣고 빼내는 방법으로 통신을 구현한다.
 메모리나 파일 시스템을 통한 공유 방식의 통신도 좋지만, 메세지를 주고 받는 채널에 초점을 두면 직관적으로 통신을 다룰 수 있다.
@@ -275,13 +275,12 @@ series = ->n { (1..n-1).reduce("1", &next_ants) }
 # 100번째 수열은 결과가 나오지 않는다.
 series.call(100)
 ```
-100번째 개미수열은 대략 길이가 천억 단위인 문자열이 된다.
-순차적으로 100번째 문자열을 계산한다면 너무도 오랜 시간이 걸릴 것이다.
+100번째 개미수열은 대략 길이가 천억 단위인 문자열이 된다. 순차적으로 100번째 문자열을 계산한다면 너무도 오랜 시간이 걸릴 것이다. 고루틴과 채널을 이용하면 쉽고 빠르게 풀 수 있다.
 
-- 고루틴과 채널을 사용한 
+- 고루틴과 채널 사용
 ```ruby
 # 1. 개미수열을 문자열 덩이가 아닌 문자 1개씩 읽어서 처리하자
-# 2. 1~100번째 까지 동시에 수열을 만들어 내자(고루틴 99개, 채널 100개)
+# 2. 1~100번째 까지 동시에 수열을 만들어 내자(고루틴 99개, 채널 99개)
 # 3. n번째 개미수열은 작업 중인 n-1번째 개미수열을 읽어서 채널에 결과를 넣도록 하자(파이프. 채널 동기화)
 # 4. 마지막 채널에서 10000번째 문자열을 출력하자.
 
@@ -306,4 +305,4 @@ ant_series[100].each_with_index {|ch,idx| (puts ch; break) if idx == 9999 }
 - Concurrent-ruby gem은 동시성을 다루는 여러 요소들이 구현되어 있고 사용하기도 쉽다. 
 
 #### 첨언
-- 개미수열 문제는 lazy에 관련된 문제로, 루비의 lazy를 사용해서도 풀어보길 바란다.
+- 개미수열 문제는 lazy로 효율적으로 풀 수 있는 문제다. lazy를 사용해서도 풀어보자.
