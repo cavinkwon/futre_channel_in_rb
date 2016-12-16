@@ -306,3 +306,11 @@ ant_series[100].each_with_index {|ch,idx| (puts ch; break) if idx == 9999 }
 
 #### 첨언
 - 개미수열 문제는 lazy로 효율적으로 풀 수 있는 문제다. lazy를 사용해서도 풀어보자.
+
+#### TO-DO
+- Agent
+- Atom
+- AtomicReference
+- Tvar
+- CountDownLatch
+- Promise
