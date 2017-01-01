@@ -6,12 +6,12 @@
 
 비동기를 처리하는데 간단하고 범용성이 높은 concurrent-ruby-edge 의 Future와 Channel 두가지를 살펴보자.
 
-참고 (2017.01.01 추가) 
-- 본 문서는 0.2.3 기준으로 작성되었습니다.
+> 참고 (2017.01.01 추가) 
+- 본 문서는 0.2.3 기준으로 작성되었습니다. 
 - 2016.12.27 0.3.0으로 오면서 edge에 큰 변경이 있었습니다. 
-- Future와 Promise를 통합시켜 Promise Framework란 이름이 되었습니다.
-- edge는 0.2.3 이전과 이후로 나뉠 수 있겠네요. 0.3.0을 곧 살펴보고 업데이트하도록 하겠습니다.
-
+- 버전 호환성 문제로 0.3.0 에서는 동작치 않습니다.
+- 0.3.0을 살펴보고 업데이트할 예정입니다.
+  
 ## 1. 설치
 Install
 ```ruby
@@ -319,9 +319,9 @@ ant_series[100].each_with_index {|ch,idx| (puts ch; break) if idx == 9999 }
 - 개미수열 문제는 lazy로 효율적으로 풀 수 있는 문제다. lazy를 사용해서도 풀어보자.
 
 #### TO-DO
+- 0.3.0 변경내용 반영
 - Agent
 - Atom
 - AtomicReference
 - Tvar
 - CountDownLatch
-- Promise
