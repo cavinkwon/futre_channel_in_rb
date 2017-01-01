@@ -6,9 +6,20 @@
 
 비동기를 처리하는데 간단하고 범용성이 높은 concurrent-ruby-edge 의 Future와 Channel 두가지를 살펴보자.
 
+참고 (2017.01.01 추가) 
+- 본 문서는 0.2.3 기준으로 작성되었습니다.
+- 2016.12.27 0.3.0으로 오면서 edge에 큰 변경이 있었습니다. 
+- Future와 Promise를 통합시켜 Promise Framework란 이름이 되었습니다.
+- edge는 0.2.3 이전과 이후로 나뉠 수 있겠네요. 0.3.0을 곧 살펴보고 업데이트하도록 하겠습니다.
+
 ## 1. 설치
+Install
 ```ruby
-gem install concurrent-ruby-edge
+gem install concurrent-ruby-edge -v 0.2.3
+```
+Gemfile:
+```ruby
+gem 'concurrent-ruby-edge', '~> 0.2.3'
 ```
 사용할 때는 require 'concurrent-edge'를 기입한다.
 
