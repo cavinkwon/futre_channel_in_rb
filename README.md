@@ -308,20 +308,18 @@ puts ant_series[6].map{|e|e}.join
 # 100번째 개미수열의 10000번째 문자열. 1.5초 정도 걸린다.
 ant_series[100].each_with_index {|ch,idx| (puts ch; break) if idx == 9999 }
 ```
-다양한 [예제](https://github.com/ruby-concurrency/concurrent-ruby/tree/master/examples)들이 있으니 참고하자. [Go By Example : Channels](https://gobyexample.com/channels)를 루비로 옮긴 [예제 코드](https://github.com/ruby-concurrency/concurrent-ruby/tree/master/examples/go-by-example-channels)들도 있다.
+다양한 [예제](https://github.com/ruby-concurrency/concurrent-ruby/tree/master/examples)들이 있으니 참고하자. [Go By Example : Channels](https://gobyexample.com/channels)를 루비로 옮긴 [예제 코드](https://github.com/ruby-concurrency/concurrent-ruby/tree/master/examples/go-by-example-channels)들도 있다.  
+개미수열 문제는 lazy로 효율적으로 풀 수 있는 문제다. lazy를 사용해서도 풀어보자.
+
 ## 4. 결론
 - Future와 Goroutine, Channel을 살펴봤다.
 - 비동기 작업을 Future로 간단히 구현할 수 있었다.
 - Goroutine, Channel을 이용한 통신을 살펴봤다.
 - Concurrent-ruby gem은 동시성을 다루는 여러 요소들이 구현되어 있고 사용하기도 쉽다. 
 
-#### 첨언
-- 개미수열 문제는 lazy로 효율적으로 풀 수 있는 문제다. lazy를 사용해서도 풀어보자.
-
-#### TO-DO
-- 0.3.0 변경내용 반영
-- Agent
-- Atom
-- AtomicReference
-- Tvar
-- CountDownLatch
+## 참고, 간략히 정리해 본 상태 및 동시성 관련 요소
+- [Atom](https://github.com/cavinkwon/til/blob/master/ruby/atom.md)
+- [AtomicReference](https://github.com/cavinkwon/til/blob/master/ruby/atomic_reference.md)
+- [Agent](https://github.com/cavinkwon/til/blob/master/ruby/agent.md)
+- [TVar, atmoically](https://github.com/cavinkwon/til/blob/master/ruby/tvar_atomically.md)
+- Actor, CountDownLatch, IVar ...  : 정리중
